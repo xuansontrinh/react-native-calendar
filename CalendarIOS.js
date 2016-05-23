@@ -156,6 +156,14 @@ let Calendar = React.createClass({
     this._scrollToItem(VIEW_INDEX);
   },
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.selectedDate !== nextProps.selectedDate) {
+      this.setState({
+        selectedDate: nextProps.selectedDate
+      })
+    }
+  },
+
   getInitialStack() {
     var initialStack = [];
     if (this.props.scrollEnabled) {
@@ -169,7 +177,6 @@ let Calendar = React.createClass({
     }
     return initialStack;
   },
-
 
   renderTopBar(date) {
     if(this.props.showControls) {
@@ -315,9 +322,12 @@ let Calendar = React.createClass({
   },
 
   _selectDate(date) {
-    this.setState({
-      selectedDate: date,
-    });
+    // only set state if selectedDate isn't a prop to prevent multiple renders
+    if (this.props.selectedDate === undefined) {
+      this.setState({
+        selectedDate: date
+      })
+    }
     this.props.onDateSelect && this.props.onDateSelect(date.format());
   },
 
