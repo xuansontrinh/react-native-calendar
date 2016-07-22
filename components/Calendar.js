@@ -13,7 +13,7 @@ import moment from 'moment';
 import styles from './styles';
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
-const VIEW_INDEX = 2;
+const VIEW_INDEX = 0;
 
 export default class Calendar extends Component {
 
@@ -60,11 +60,11 @@ export default class Calendar extends Component {
   };
 
   componentDidMount() {
-    this.scrollToItem(VIEW_INDEX);
+    //this.scrollToItem(VIEW_INDEX);
   }
 
   componentDidUpdate() {
-    this.scrollToItem(VIEW_INDEX);
+    //this.scrollToItem(VIEW_INDEX);
   }
 
   getMonthStack(currentMonth) {
